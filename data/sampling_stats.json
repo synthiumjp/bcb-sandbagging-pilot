@@ -1,0 +1,30 @@
+{
+  "physics": {
+    "pool_size_10opt": 1242,
+    "sampled": 500,
+    "c1_count": 167,
+    "c2_count": 167,
+    "c3_count": 166
+  },
+  "law": {
+    "pool_size_10opt": 707,
+    "sampled": 500,
+    "c1_count": 167,
+    "c2_count": 167,
+    "c3_count": 166
+  },
+  "psychology": {
+    "pool_size_10opt": 641,
+    "sampled": 500,
+    "c1_count": 167,
+    "c2_count": 167,
+    "c3_count": 166
+  },
+  "economics": {
+    "pool_size_10opt": 647,
+    "sampled": 500,
+    "c1_count": 167,
+    "c2_count": 167,
+    "c3_count": 166
+  }
+}

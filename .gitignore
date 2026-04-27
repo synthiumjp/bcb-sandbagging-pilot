@@ -1,0 +1,6 @@
+﻿venv/
+models/
+__pycache__/
+*.gguf
+.env
+configs/local_config.py

@@ -1,0 +1,263 @@
+======================================================================
+ANALYSIS 5: POSITION-OF-CORRECT-ANSWER
+Does accuracy under B depend on where the correct answer falls?
+======================================================================
+
+Model: Qwen-2.5-7B-Instruct
+============================================================
+  Overall modal B responses: A=330, B=290, C=252
+
+  physics (modal B wrong answer: A)
+   Pos     n   Acc_A   Acc_B    Delta  B_chose_this                  Note
+  ----------------------------------------------------------------------
+     A    66   0.515   0.470   -0.045         0.470      ← modal B target
+     B    51   0.471   0.333   -0.137         0.333                      
+     C    44   0.341   0.250   -0.091         0.250                      
+     D    51   0.471   0.314   -0.157         0.314                      
+     E    49   0.367   0.367   +0.000         0.367                      
+     F    45   0.244   0.222   -0.022         0.222                      
+     G    46   0.130   0.109   -0.022         0.109                      
+     H    48   0.229   0.229   +0.000         0.229                      
+     I    49   0.224   0.143   -0.082         0.143                      
+     J    51   0.294   0.157   -0.137         0.157                      
+  Least suppressed: E (Δ=+0.000)
+  Most suppressed:  D (Δ=-0.157)
+  Modal B target coincides with least suppressed: NO
+
+  law (modal B wrong answer: C)
+   Pos     n   Acc_A   Acc_B    Delta  B_chose_this                  Note
+  ----------------------------------------------------------------------
+     A    65   0.431   0.400   -0.031         0.400                      
+     B    44   0.318   0.364   +0.045         0.364                 BOOST
+     C    43   0.349   0.349   +0.000         0.349      ← modal B target
+     D    42   0.286   0.333   +0.048         0.333                 BOOST
+     E    54   0.370   0.370   +0.000         0.370                      
+     F    43   0.186   0.233   +0.047         0.233                 BOOST
+     G    60   0.217   0.217   +0.000         0.217                      
+     H    46   0.217   0.283   +0.065         0.283                 BOOST
+     I    60   0.283   0.283   +0.000         0.283                      
+     J    43   0.302   0.209   -0.093         0.209                      
+  Least suppressed: H (Δ=+0.065)
+  Most suppressed:  J (Δ=-0.093)
+  Modal B target coincides with least suppressed: NO
+
+  psychology (modal B wrong answer: C)
+   Pos     n   Acc_A   Acc_B    Delta  B_chose_this                  Note
+  ----------------------------------------------------------------------
+     A    45   0.667   0.622   -0.044         0.622                      
+     B    62   0.774   0.758   -0.016         0.758                      
+     C    49   0.673   0.653   -0.020         0.653      ← modal B target
+     D    45   0.711   0.711   +0.000         0.711                      
+     E    52   0.538   0.519   -0.019         0.519                      
+     F    50   0.560   0.560   +0.000         0.560                      
+     G    58   0.672   0.672   +0.000         0.672                      
+     H    51   0.549   0.529   -0.020         0.529                      
+     I    41   0.561   0.585   +0.024         0.585                 BOOST
+     J    47   0.574   0.511   -0.064         0.511                      
+  Least suppressed: I (Δ=+0.024)
+  Most suppressed:  J (Δ=-0.064)
+  Modal B target coincides with least suppressed: NO
+
+  economics (modal B wrong answer: B)
+   Pos     n   Acc_A   Acc_B    Delta  B_chose_this                  Note
+  ----------------------------------------------------------------------
+     A    54   0.685   0.667   -0.019         0.667                      
+     B    54   0.500   0.556   +0.056         0.556  ← modal B target BOOST
+     C    53   0.547   0.604   +0.057         0.604                 BOOST
+     D    45   0.600   0.556   -0.044         0.556                      
+     E    46   0.565   0.609   +0.043         0.609                 BOOST
+     F    48   0.438   0.438   +0.000         0.438                      
+     G    54   0.537   0.556   +0.019         0.556                 BOOST
+     H    46   0.500   0.478   -0.022         0.478                      
+     I    47   0.447   0.426   -0.021         0.426                      
+     J    53   0.623   0.566   -0.057         0.566                      
+  Least suppressed: C (Δ=+0.057)
+  Most suppressed:  J (Δ=-0.057)
+  Modal B target coincides with least suppressed: NO
+
+
+Model: Llama-3-8B-Instruct
+============================================================
+  Overall modal B responses: E=635, F=522, G=320
+
+  physics (modal B wrong answer: E)
+   Pos     n   Acc_A   Acc_B    Delta  B_chose_this                  Note
+  ----------------------------------------------------------------------
+     A    66   0.258   0.030   -0.227         0.030                      
+     B    51   0.529   0.098   -0.431         0.098                      
+     C    44   0.364   0.114   -0.250         0.114                      
+     D    51   0.353   0.176   -0.176         0.176                      
+     E    49   0.306   0.633   +0.327         0.633  ← modal B target BOOST
+     F    45   0.267   0.222   -0.044         0.222                      
+     G    46   0.217   0.304   +0.087         0.304                 BOOST
+     H    48   0.125   0.083   -0.042         0.083                      
+     I    49   0.102   0.061   -0.041         0.061                      
+     J    51   0.216   0.000   -0.216         0.000                      
+  Least suppressed: E (Δ=+0.327)
+  Most suppressed:  B (Δ=-0.431)
+  Modal B target coincides with least suppressed: YES
+
+  law (modal B wrong answer: F)
+   Pos     n   Acc_A   Acc_B    Delta  B_chose_this                  Note
+  ----------------------------------------------------------------------
+     A    65   0.338   0.000   -0.338         0.000                      
+     B    44   0.250   0.045   -0.205         0.045                      
+     C    43   0.349   0.163   -0.186         0.163                      
+     D    42   0.357   0.071   -0.286         0.071                      
+     E    54   0.296   0.519   +0.222         0.519                 BOOST
+     F    43   0.279   0.535   +0.256         0.535  ← modal B target BOOST
+     G    60   0.267   0.183   -0.083         0.183                      
+     H    46   0.065   0.043   -0.022         0.043                      
+     I    60   0.183   0.033   -0.150         0.033                      
+     J    43   0.256   0.000   -0.256         0.000                      
+  Least suppressed: F (Δ=+0.256)
+  Most suppressed:  A (Δ=-0.338)
+  Modal B target coincides with least suppressed: YES
+
+  psychology (modal B wrong answer: F)
+   Pos     n   Acc_A   Acc_B    Delta  B_chose_this                  Note
+  ----------------------------------------------------------------------
+     A    45   0.600   0.111   -0.489         0.111                      
+     B    62   0.645   0.500   -0.145         0.500                      
+     C    49   0.653   0.571   -0.082         0.571                      
+     D    45   0.600   0.333   -0.267         0.333                      
+     E    52   0.615   0.692   +0.077         0.692                 BOOST
+     F    50   0.700   0.780   +0.080         0.780  ← modal B target BOOST
+     G    58   0.586   0.500   -0.086         0.500                      
+     H    51   0.412   0.235   -0.176         0.235                      
+     I    41   0.561   0.171   -0.390         0.171                      
+     J    47   0.362   0.149   -0.213         0.149                      
+  Least suppressed: F (Δ=+0.080)
+  Most suppressed:  A (Δ=-0.489)
+  Modal B target coincides with least suppressed: YES
+
+  economics (modal B wrong answer: E)
+   Pos     n   Acc_A   Acc_B    Delta  B_chose_this                  Note
+  ----------------------------------------------------------------------
+     A    54   0.574   0.093   -0.481         0.093                      
+     B    54   0.407   0.130   -0.278         0.130                      
+     C    53   0.547   0.340   -0.208         0.340                      
+     D    45   0.578   0.244   -0.333         0.244                      
+     E    46   0.565   0.696   +0.130         0.696  ← modal B target BOOST
+     F    48   0.375   0.417   +0.042         0.417                 BOOST
+     G    54   0.481   0.556   +0.074         0.556                 BOOST
+     H    46   0.413   0.130   -0.283         0.130                      
+     I    47   0.447   0.128   -0.319         0.128                      
+     J    53   0.528   0.283   -0.245         0.283                      
+  Least suppressed: E (Δ=+0.130)
+  Most suppressed:  A (Δ=-0.481)
+  Modal B target coincides with least suppressed: YES
+
+
+Model: Phi-3.5-mini-instruct
+============================================================
+  Overall modal B responses: J=578, D=230, G=186
+
+  physics (modal B wrong answer: J)
+   Pos     n   Acc_A   Acc_B    Delta  B_chose_this                  Note
+  ----------------------------------------------------------------------
+     A    66   0.152   0.061   -0.091         0.061                      
+     B    51   0.353   0.176   -0.176         0.176                      
+     C    44   0.318   0.182   -0.136         0.182                      
+     D    51   0.314   0.333   +0.020         0.333                 BOOST
+     E    49   0.163   0.122   -0.041         0.122                      
+     F    45   0.089   0.089   +0.000         0.089                      
+     G    45   0.267   0.178   -0.089         0.178                      
+     H    48   0.271   0.250   -0.021         0.250                      
+     I    49   0.265   0.163   -0.102         0.163                      
+     J    51   0.392   0.706   +0.314         0.706  ← modal B target BOOST
+  Least suppressed: J (Δ=+0.314)
+  Most suppressed:  B (Δ=-0.176)
+  Modal B target coincides with least suppressed: YES
+
+  law (modal B wrong answer: J)
+   Pos     n   Acc_A   Acc_B    Delta  B_chose_this                  Note
+  ----------------------------------------------------------------------
+     A    65   0.123   0.077   -0.046         0.077                      
+     B    44   0.182   0.136   -0.045         0.136                      
+     C    43   0.256   0.256   +0.000         0.256                      
+     D    42   0.286   0.262   -0.024         0.262                      
+     E    54   0.259   0.204   -0.056         0.204                      
+     F    43   0.233   0.186   -0.047         0.186                      
+     G    60   0.283   0.233   -0.050         0.233                      
+     H    46   0.261   0.174   -0.087         0.174                      
+     I    60   0.417   0.317   -0.100         0.317                      
+     J    43   0.465   0.605   +0.140         0.605  ← modal B target BOOST
+  Least suppressed: J (Δ=+0.140)
+  Most suppressed:  I (Δ=-0.100)
+  Modal B target coincides with least suppressed: YES
+
+  psychology (modal B wrong answer: J)
+   Pos     n   Acc_A   Acc_B    Delta  B_chose_this                  Note
+  ----------------------------------------------------------------------
+     A    45   0.578   0.533   -0.044         0.533                      
+     B    62   0.629   0.597   -0.032         0.597                      
+     C    49   0.673   0.633   -0.041         0.633                      
+     D    45   0.667   0.689   +0.022         0.689                 BOOST
+     E    52   0.538   0.500   -0.038         0.500                      
+     F    50   0.580   0.560   -0.020         0.560                      
+     G    58   0.724   0.672   -0.052         0.672                      
+     H    51   0.588   0.549   -0.039         0.549                      
+     I    41   0.634   0.610   -0.024         0.610                      
+     J    47   0.638   0.702   +0.064         0.702  ← modal B target BOOST
+  Least suppressed: J (Δ=+0.064)
+  Most suppressed:  G (Δ=-0.052)
+  Modal B target coincides with least suppressed: YES
+
+  economics (modal B wrong answer: J)
+   Pos     n   Acc_A   Acc_B    Delta  B_chose_this                  Note
+  ----------------------------------------------------------------------
+     A    54   0.444   0.407   -0.037         0.407                      
+     B    54   0.481   0.352   -0.130         0.352                      
+     C    53   0.585   0.528   -0.057         0.528                      
+     D    45   0.533   0.578   +0.044         0.578                 BOOST
+     E    46   0.522   0.522   +0.000         0.522                      
+     F    48   0.458   0.417   -0.042         0.417                      
+     G    54   0.611   0.593   -0.019         0.593                      
+     H    46   0.522   0.522   +0.000         0.522                      
+     I    47   0.468   0.511   +0.043         0.511                 BOOST
+     J    53   0.585   0.698   +0.113         0.698  ← modal B target BOOST
+  Least suppressed: J (Δ=+0.113)
+  Most suppressed:  B (Δ=-0.130)
+  Modal B target coincides with least suppressed: YES
+
+
+
+======================================================================
+ANALYSIS 5b: RAW POSITIONAL RESPONSE DISTRIBUTION
+How often does each model pick each position, by condition?
+(Uniform = 10% per position)
+======================================================================
+
+Model: Qwen-2.5-7B-Instruct
+  Condition A (n=2000):
+    A= 16.1%  B= 13.7%  C= 11.1%  D= 13.0%  E=  8.8%  F=  6.7%  G=  7.0%  H=  6.9%  I=  7.0%  J=  9.7%  
+    Entropy: 3.251/3.322 (normalised: 0.979)
+    Max position: A (16.1%)
+  Condition B (n=2000):
+    A= 16.5%  B= 14.5%  C= 12.6%  D= 10.7%  E= 10.5%  F=  7.2%  G=  6.9%  H=  7.5%  I=  6.6%  J=  7.0%  
+    Entropy: 3.243/3.322 (normalised: 0.976)
+    Max position: A (16.5%)
+    No large shifts A→B
+
+Model: Llama-3-8B-Instruct
+  Condition A (n=2000):
+    A= 11.9%  B= 15.6%  C= 12.7%  D= 11.4%  E= 10.7%  F= 10.0%  G=  9.0%  H=  4.7%  I=  5.1%  J=  8.9%  
+    Entropy: 3.247/3.322 (normalised: 0.977)
+    Max position: B (15.6%)
+  Condition B (n=2000):
+    A=  1.7%  B=  5.5%  C=  8.1%  D=  4.2%  E= 31.8%  F= 26.1%  G= 16.0%  H=  1.9%  I=  1.8%  J=  2.9%  
+    Entropy: 2.634/3.322 (normalised: 0.793)
+    Max position: E (31.8%)
+    Large shifts A→B (>3pp): A=-10.3pp  B=-10.1pp  C=-4.6pp  D=-7.2pp  E=+21.1pp  F=+16.1pp  G=+7.0pp  I=-3.3pp  J=-6.0pp  
+
+Model: Phi-3.5-mini-instruct
+  Condition A (n=1999):
+    A=  5.5%  B=  9.7%  C=  9.8%  D= 10.7%  E=  6.8%  F=  7.7%  G= 10.9%  H=  9.6%  I= 10.7%  J= 18.8%  
+    Entropy: 3.245/3.322 (normalised: 0.977)
+    Max position: J (18.8%)
+  Condition B (n=1999):
+    A=  3.9%  B=  7.1%  C=  7.2%  D= 11.5%  E=  6.6%  F=  7.7%  G=  9.3%  H=  9.1%  I=  8.8%  J= 28.9%  
+    Entropy: 3.086/3.322 (normalised: 0.929)
+    Max position: J (28.9%)
+    Large shifts A→B (>3pp): J=+10.1pp  
