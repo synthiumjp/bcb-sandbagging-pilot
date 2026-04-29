@@ -40,7 +40,6 @@ plt.rcParams.update({
     'legend.fontsize': 10,
     'figure.dpi': 300,
     'savefig.dpi': 300,
-    'savefig.bbox_inches': 'tight',
     'axes.spines.top': False,
     'axes.spines.right': False,
 })
@@ -238,6 +237,7 @@ def main():
                 ha='center', va='center')
 
     ax.set_ylim(0, 0.5)
+    plt.tight_layout()
 
     for fmt in ['png', 'pdf']:
         fig.savefig(os.path.join(FIG_DIR, f'fig3_js_divergence.{fmt}'))
@@ -275,7 +275,7 @@ def main():
     pcts = [c / sum(counts) * 100 for c in counts]
     colors_pie = [COLORS['sandbag_orig'], COLORS['sandbag_perm'], COLORS['chance']]
 
-    fig, ax = plt.subplots(figsize=(5, 4))
+    fig, ax = plt.subplots(figsize=(7, 4))
     bars = ax.barh(range(len(labels)), pcts, color=colors_pie, edgecolor='white', height=0.6)
     ax.set_yticks(range(len(labels)))
     ax.set_yticklabels(labels, fontsize=11)
@@ -291,6 +291,7 @@ def main():
     ax.text(10.5, -0.4, 'chance\n(10%)', fontsize=8, color=COLORS['chance'], alpha=0.7)
 
     ax.invert_yaxis()
+    plt.tight_layout()
 
     for fmt in ['png', 'pdf']:
         fig.savefig(os.path.join(FIG_DIR, f'fig4_classification.{fmt}'))

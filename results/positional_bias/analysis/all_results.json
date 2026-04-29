@@ -1,0 +1,104 @@
+{
+  "llama3-8b": {
+    "model": "llama3-8b",
+    "gate1": {
+      "entropy_a": 0.971854449411622,
+      "entropy_b": 0.6812130630328334,
+      "passed": "True"
+    },
+    "gate2": {
+      "acc_a": 0.38,
+      "acc_b": 0.217,
+      "drop_pp": 16.3,
+      "mcnemar_p": 2.62883721447191e-42,
+      "passed": "True"
+    },
+    "h1": {
+      "same_letter": 0.373,
+      "shifted_content": 0.1965,
+      "other": 0.4305,
+      "gap_pp": 17.65,
+      "top2_orig": [
+        "E",
+        "F"
+      ],
+      "top2_perm": [
+        "E",
+        "F"
+      ],
+      "pearson_r": 0.9993610317293304,
+      "outcome": "AMBIGUOUS"
+    },
+    "h3": {
+      "acc_orig": 0.38,
+      "acc_perm": 0.382,
+      "diff_pp": -0.20000000000000018,
+      "p": 0.8410880855963062
+    }
+  },
+  "qwen2.5-7b": {
+    "model": "qwen2.5-7b",
+    "gate1": {
+      "entropy_a": 0.9688969370975792,
+      "entropy_b": 0.9736018955631363,
+      "passed": "False"
+    },
+    "gate2": {
+      "acc_a": 0.4505,
+      "acc_b": 0.438,
+      "drop_pp": 1.250000000000001,
+      "mcnemar_p": 0.0704608670124577,
+      "passed": "False"
+    },
+    "h1": {
+      "outcome": "skipped",
+      "reasons": [
+        "Gate 1 failed",
+        "Gate 2 failed"
+      ]
+    },
+    "h3": {
+      "acc_orig": 0.4505,
+      "acc_perm": 0.457,
+      "diff_pp": -0.6500000000000006,
+      "p": 0.5243771253471694
+    },
+    "h4b": {
+      "chi2": 10.584616595726814,
+      "p": 0.3052586075222709,
+      "confirmed": "True"
+    }
+  },
+  "phi3.5-mini": {
+    "model": "phi3.5-mini",
+    "gate1": {
+      "entropy_a": 0.9883714986412787,
+      "entropy_b": 0.982988560495064,
+      "passed": "False"
+    },
+    "gate2": {
+      "acc_a": 0.43,
+      "acc_b": 0.405,
+      "drop_pp": 2.4999999999999964,
+      "mcnemar_p": 0.00010413371549869113,
+      "passed": "False"
+    },
+    "h1": {
+      "outcome": "skipped",
+      "reasons": [
+        "Gate 1 failed",
+        "Gate 2 failed"
+      ]
+    },
+    "h3": {
+      "acc_orig": 0.43,
+      "acc_perm": 0.429,
+      "diff_pp": 0.10000000000000009,
+      "p": 0.9180670209468027
+    },
+    "h4a": {
+      "modal": "D",
+      "confirmed": false
+    }
+  }
+}
