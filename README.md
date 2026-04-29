@@ -1,12 +1,12 @@
 # BCB Sandbagging Detection Programme
 
-A pre-registered research programme investigating behavioural signatures of sandbagging (deliberate underperformance) in small instruction-tuned LLMs.
+A pre-registered research programme investigating behavioural signatures of sandbagging (deliberate underperformance) in small instruction-tuned LLMs, applying psychometric measurement principles to LLM evaluation.
 
 ## Studies
 
 ### Study 1: Below-Chance Blindness Pilot
 
-**Paper:** [Below-Chance Blindness: Prompted Underperformance in Small LLMs Produces Positional Bias Rather than Answer Avoidance](link-to-arxiv)
+**Paper:** [Below-Chance Blindness: Prompted Underperformance in Small LLMs Produces Positional Bias Rather than Answer Avoidance](https://arxiv.org/abs/2604.25249)
 
 **Pre-registration:** [OSF](https://osf.io/6zftv/)
 
@@ -30,22 +30,47 @@ Key findings:
 - Qwen-2.5-7B ignored the sandbagging instruction (negative control). Phi-3.5-mini showed weak compliance and its pilot J-bias did not replicate
 - No model showed significant accuracy change under honest option permutation
 
+### Study 3: Instruction Complexity and Positional Collapse
+
+**Paper:** Instruction Complexity Induces Positional Collapse in Adversarial LLM Evaluation (in preparation)
+
+**Pre-registration:** [OSF](https://osf.io/7p64)
+
+Maps the boundary between content-blind positional shortcuts and content-aware sandbagging strategies using a six-condition adversarial instruction-specificity gradient. 2 models (Llama-3-8B, Llama-3.1-8B), 7 primary conditions, 4 null baselines, 29,600 trials.
+
+Key findings:
+- Three response regimes identified: content-engaged compliance, shortcut with residual engagement, and extreme positional collapse
+- The only multi-step instruction (S5: "identify correct, then choose different") produced near-total positional collapse (99.9% at one position for Llama-3-8B), matching the model's content-absent null-prompt default
+- Distributional collapse and content engagement co-occur (50% concordance between screening criteria), revealing that entropy-based screening and difficulty-based content assessment measure partially independent dimensions of response validity
+- Effect replicated across both models and four academic domains
+
 ## Repository structure
 
 ```
 bcb-sandbagging-pilot/
-  configs/             # Model and experiment configuration
-  data/                # Sampled items and permutation assignments
-  results/             # Raw response data (JSONL)
-    positional_bias/   # Study 2 results
-      robustness/      # T=0.7 stochastic robustness check
-      analysis/        # Analysis outputs and item classifications
-  generate_permutations.py   # Study 2: cyclic shift assignments (seed 84)
-  run_inference.py           # Study 1: inference harness
-  run_positional_bias.py     # Study 2: inference harness with permutation
-  run_robustness_check.py    # Study 2: T=0.7, K=5 robustness check
-  run_analysis_local.py      # Study 2: pre-registered analysis pipeline
-  sample_items.py            # Item sampling from MMLU-Pro (seed 42)
+  configs/                    # Model and experiment configuration
+  data/                       # Sampled items and permutation assignments
+  results/
+    positional_bias/          # Study 2 results
+      robustness/             # T=0.7 stochastic robustness check
+      analysis/               # Analysis outputs
+    study3/                   # Study 3 results
+      analysis/               # Study 3 analysis outputs and figures
+
+  # Study 1
+  run_inference.py            # Study 1: inference harness
+  run_analysis.py             # Study 1: analysis pipeline
+  sample_items.py             # Item sampling from MMLU-Pro (seed 42)
+
+  # Study 2
+  generate_permutations.py    # Cyclic shift assignments (seed 84)
+  run_positional_bias.py      # Inference harness with permutation
+  run_robustness_check.py     # T=0.7, K=5 robustness check
+  run_analysis_local.py       # Pre-registered analysis pipeline
+
+  # Study 3
+  run_study3.py               # Inference harness (7 primary + 4 null conditions)
+  run_study3_analysis.py      # Pre-registered analysis pipeline
 ```
 
 ## Hardware
@@ -54,9 +79,14 @@ All inference: AMD Radeon RX 7900 GRE (16 GB VRAM), Q5_K_M quantisation, llama-c
 
 ## Models
 
+Studies 1 and 2:
 - Qwen-2.5-7B-Instruct (Q5_K_M)
 - Meta-Llama-3-8B-Instruct (Q5_K_M)
 - Phi-3.5-mini-instruct (Q5_K_M)
+
+Study 3:
+- Meta-Llama-3-8B-Instruct (Q5_K_M)
+- Meta-Llama-3.1-8B-Instruct (Q5_K_M)
 
 ## Citation
 
@@ -66,7 +96,25 @@ All inference: AMD Radeon RX 7900 GRE (16 GB VRAM), Q5_K_M quantisation, llama-c
          Produces Positional Bias Rather than Answer Avoidance},
   author={Cacioli, Jon-Paul},
   year={2026},
-  note={arXiv preprint}
+  eprint={2604.25249},
+  archivePrefix={arXiv},
+  primaryClass={cs.CL}
+}
+
+@article{cacioli2026positional,
+  title={Option-Order Randomisation Reveals a Distributional Position
+         Attractor in Prompted Sandbagging},
+  author={Cacioli, Jon-Paul},
+  year={2026},
+  note={OSF: osf.io/efr6s}
+}
+
+@article{cacioli2026complexity,
+  title={Instruction Complexity Induces Positional Collapse in
+         Adversarial LLM Evaluation},
+  author={Cacioli, Jon-Paul},
+  year={2026},
+  note={OSF: osf.io/7p64}
 }
 ```
 
