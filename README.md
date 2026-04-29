@@ -71,6 +71,7 @@ bcb-sandbagging-pilot/
   # Study 3
   run_study3.py               # Inference harness (7 primary + 4 null conditions)
   run_study3_analysis.py      # Pre-registered analysis pipeline
+  eval_screen.py              # Distributional validity screening utility
 ```
 
 ## Hardware
