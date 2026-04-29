@@ -1,142 +1,75 @@
-# Below-Chance Blindness: Prompted Underperformance in Small LLMs Produces Positional Bias Rather than Answer Avoidance
+# BCB Sandbagging Detection Programme
 
-**Pre-registered at OSF:** [https://osf.io/6zftv/](https://osf.io/6zftv/)
+A pre-registered research programme investigating behavioural signatures of sandbagging (deliberate underperformance) in small instruction-tuned LLMs.
 
-**Author:** Jon-Paul Cacioli | [ORCID 0009-0000-7054-2014](https://orcid.org/0009-0000-7054-2014)
+## Studies
 
----
+### Study 1: Below-Chance Blindness Pilot
 
-## Overview
+**Paper:** [Below-Chance Blindness: Prompted Underperformance in Small LLMs Produces Positional Bias Rather than Answer Avoidance](link-to-arxiv)
 
-This repository contains all code, data, and analysis for a pre-registered pilot study testing whether symptom validity testing (SVT) logic from clinical malingering detection can identify LLM sandbagging through below-chance performance (BCB) on forced-choice items.
+**Pre-registration:** [OSF](https://osf.io/6zftv/)
 
-**Key finding:** The plausibility gate failed — zero of 12 model–domain cells showed below-chance performance under sandbagging instruction. Exploratory analyses revealed that compliant models implement underperformance as positional bias (collapsing responses onto preferred option positions) rather than answer-aware avoidance. An explicit anti-task instruction ("pick the least likely answer") drove two of three models below chance, confirming the capability exists but is not activated by "deliberately underperform."
+Tested whether symptom validity testing (SVT) logic from clinical malingering detection could identify sandbagging through below-chance performance (BCB) on forced-choice items. 3 models (Qwen-2.5-7B, Llama-3-8B, Phi-3.5-mini), 4 MMLU-Pro domains, 4 conditions, 24,000 trials.
 
-## Setup
+The plausibility gate failed. Zero cells showed below-chance performance. Exploratory analysis revealed that Llama-3-8B complied with sandbagging by adopting a position-dominant response policy (E: 31.8%, F: 26.1%) rather than answer avoidance. The critical limitation: fixed option ordering in MMLU-Pro could not distinguish model-level positional preferences from dataset-level distractor structure.
 
-### Requirements
+### Study 2: Option-Order Randomisation (Positional Attractor)
 
-- Python 3.11
-- AMD GPU with Vulkan support (tested on RX 7900 GRE 16GB)
-- ~18GB disk space for GGUF models
+**Paper:** Option-Order Randomisation Reveals a Distributional Position Attractor in Prompted Sandbagging (in preparation)
 
-### Installation
+**Pre-registration:** [OSF](https://osf.io/efr6s)
 
-```bash
-python -m venv venv
-# Windows:
-.\venv\Scripts\activate
-# Linux/Mac:
-source venv/bin/activate
+Confirmatory follow-up adding cyclic option-order randomisation as the critical control. Same 3 models, same 2,000 items, 4 conditions (honest/sandbagging x original/permuted order), 24,000 primary trials plus 20,000 stochastic robustness check trials.
 
-# Install dependencies
-pip install llama-cpp-python datasets scipy huggingface-hub
+Key findings:
+- The pre-registered item-level same-letter diagnostic returned ambiguous (37.3% same-letter rate, below the 50% threshold)
+- Aggregate distributional evidence was overwhelming: Pearson r = 0.9994, JS divergence = 0.027 between original and permuted sandbagging distributions (vs 0.386 between honest and sandbagging)
+- Accuracy spiked to 72.1% when the correct answer coincidentally occupied the model's preferred position E
+- The data reveal a distributional position attractor: under sandbagging, the model enters a low-entropy response-position basin that is invariant under content rotation
+- Qwen-2.5-7B ignored the sandbagging instruction (negative control). Phi-3.5-mini showed weak compliance and its pilot J-bias did not replicate
+- No model showed significant accuracy change under honest option permutation
 
-# For Vulkan GPU acceleration:
-# CMAKE_ARGS="-DGGML_VULKAN=on" pip install llama-cpp-python
-```
-
-### Models
-
-Three GGUF models at Q5_K_M quantisation:
-
-| Model | Source |
-|-------|--------|
-| Qwen-2.5-7B-Instruct | `bartowski/Qwen2.5-7B-Instruct-GGUF` |
-| Llama-3-8B-Instruct | `bartowski/Meta-Llama-3-8B-Instruct-GGUF` |
-| Phi-3.5-mini-instruct | `bartowski/Phi-3.5-mini-instruct-GGUF` |
-
-Download via:
-```bash
-hf download bartowski/Meta-Llama-3-8B-Instruct-GGUF Meta-Llama-3-8B-Instruct-Q5_K_M.gguf --local-dir ./models
-hf download bartowski/Qwen2.5-7B-Instruct-GGUF Qwen2.5-7B-Instruct-Q5_K_M.gguf --local-dir ./models
-hf download bartowski/Phi-3.5-mini-instruct-GGUF Phi-3.5-mini-instruct-Q5_K_M.gguf --local-dir ./models
-```
-
-Then edit `configs/local_config.py` with your model paths.
-
-## Execution
-
-**All steps must be run in order. Condition A must run before B, C, D.**
-
-```bash
-# Step 1: Sample items (run once)
-python sample_items.py
-
-# Step 2: Run inference (one model at a time)
-python run_inference.py --model llama3-8b --condition all
-python run_inference.py --model qwen2.5-7b --condition all
-python run_inference.py --model phi3.5-mini --condition all
-
-# Step 3: Pre-registered analysis
-python run_analysis.py
-
-# Step 4: Exploratory post-hoc analyses
-python run_posthoc.py
-python run_position_analysis.py
-```
-
-Inference supports **resume** — if interrupted, re-run the same command and it skips completed trials.
-
-## File Structure
+## Repository structure
 
 ```
 bcb-sandbagging-pilot/
-├── configs/
-│   ├── config.py              # Pre-registered parameters (DO NOT MODIFY)
-│   └── local_config.py        # Your GGUF paths (git-ignored)
-├── data/
-│   ├── sampled_items.jsonl    # 2,000 sampled items with C sub-prompt assignments
-│   └── sampling_stats.json    # Sampling audit trail
-├── results/
-│   └── {model}_{condition}.jsonl  # Trial-level results (24,000 trials)
-├── analysis/
-│   ├── analysis_report.txt        # Pre-registered gate decision + full report
-│   ├── full_results.json          # Machine-readable results
-│   ├── posthoc_report.txt         # Exploratory: compliance, sub-prompts, distributions
-│   └── position_analysis_report.txt  # Exploratory: positional bias analysis
-├── sample_items.py            # Step 1: item sampling
-├── run_inference.py           # Step 2: model inference
-├── run_analysis.py            # Step 3: pre-registered analysis
-├── run_posthoc.py             # Step 4a: exploratory post-hoc
-├── run_position_analysis.py   # Step 4b: positional bias analysis
-└── README.md
+  configs/             # Model and experiment configuration
+  data/                # Sampled items and permutation assignments
+  results/             # Raw response data (JSONL)
+    positional_bias/   # Study 2 results
+      robustness/      # T=0.7 stochastic robustness check
+      analysis/        # Analysis outputs and item classifications
+  generate_permutations.py   # Study 2: cyclic shift assignments (seed 84)
+  run_inference.py           # Study 1: inference harness
+  run_positional_bias.py     # Study 2: inference harness with permutation
+  run_robustness_check.py    # Study 2: T=0.7, K=5 robustness check
+  run_analysis_local.py      # Study 2: pre-registered analysis pipeline
+  sample_items.py            # Item sampling from MMLU-Pro (seed 42)
 ```
 
-## Pre-registered Design
+## Hardware
 
-All parameters locked per [OSF pre-registration](https://osf.io/6zftv/):
+All inference: AMD Radeon RX 7900 GRE (16 GB VRAM), Q5_K_M quantisation, llama-cpp-python 0.3.16, Vulkan backend. Python 3.11.
 
-- **Seed:** 42
-- **Items:** 10-option MMLU-Pro items only (chance = 0.10)
-- **Domains:** Physics, Law, Psychology, Economics (500 items each)
-- **Models:** Qwen-2.5-7B, Llama-3-8B, Phi-3.5-mini (Q5_K_M, greedy T=0)
-- **Gate:** ≥3 of 12 cells significant below chance (α = 0.01, Bonferroni)
-- **Gate outcome: FAIL** (0 significant cells)
+## Models
 
-## Key Results
-
-| Analysis | Outcome |
-|----------|---------|
-| H1 (plausibility gate) | **FAIL** — 0/12 cells below chance |
-| H2 (B vs A) | Significant (W=3.0, p=.002) — B suppresses accuracy |
-| H2 (B vs C) | Significant (W=4.0, p=.003) — C suppresses more than B |
-| H3 (null prediction) | Confirmed — 0 cells below chance in A or D |
-| C3 below chance | 8/12 cells for Qwen+Phi — capability exists |
-| Positional bias (Llama) | E: 31.8%, F: 26.1% under B (vs ~10% under A) |
+- Qwen-2.5-7B-Instruct (Q5_K_M)
+- Meta-Llama-3-8B-Instruct (Q5_K_M)
+- Phi-3.5-mini-instruct (Q5_K_M)
 
 ## Citation
 
 ```bibtex
-@misc{cacioli2026bcb,
+@article{cacioli2026bcb,
   title={Below-Chance Blindness: Prompted Underperformance in Small LLMs
          Produces Positional Bias Rather than Answer Avoidance},
   author={Cacioli, Jon-Paul},
   year={2026},
-  note={Pre-registered at OSF: https://osf.io/6zftv/}
+  note={arXiv preprint}
 }
 ```
 
 ## License
 
-Code: MIT | Data: CC-BY-4.0
+Code: MIT. Data: CC-BY 4.0.
